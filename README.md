@@ -64,11 +64,11 @@ Regarding teacher forcing, since the task is to generate sequences without makin
 
 I define Mean Absolute Error (MAE) and Mean Absolute Precentage Error (MAPE) metrics for the predicted sequence, that is, averaged across the whole predicted sequence:
 
-${\rm MAE} := \frac{1}{L}\sum_{t=1}^{L} |y_t - \hat{y}_t|$ (mg/dl)
+<img src="https://latex.codecogs.com/gif.latex?{\rm MAE} := \frac{1}{L}\sum_{t=1}^{L} |y_t - \hat{y}_t|~{\rm (mg/dl)} "/>
 
-${\rm MAPE} := \frac{1}{L}\sum_{t=1}^{L} \left|\frac{y_t - \hat{y}_t}{y_t}\right|\cdot 100 $ (%)
+<img src="https://latex.codecogs.com/gif.latex?{\rm MAPE} := \frac{1}{L}\sum_{t=1}^{L} \left|\frac{y_t - \hat{y}_t}{y_t}\right|\cdot 100 ~{\rm (%)} " />
 
-where $L$ is the number of steps in the predicted sequence. 
+where L is the number of steps in the predicted sequence. 
 
 I average these metrics across all sequences in the test dataset(~40k series), and provide also its standard deviation. Generally, metric distributions present a tail of bad preforming predictions, which shifts the mean away from the median. 
 
