@@ -64,9 +64,9 @@ Regarding teacher forcing, since the task is to generate sequences without makin
 
 I define Mean Absolute Error (MAE) and Mean Absolute Precentage Error (MAPE) metrics for the predicted sequence, that is, averaged across the whole predicted sequence:
 
-<img src="https://latex.codecogs.com/gif.latex?{\rm MAE} := \frac{1}{L}\sum_{t=1}^{L} |y_t - \hat{y}_t|~{\rm (mg/dl)} "/>
+${\rm MAE} := \frac{1}{L}\sum_{t=1}^{L} |y_t - \hat{y}_t|~{\rm (mg/dl)}$
 
-<img src="https://latex.codecogs.com/gif.latex?{\rm MAPE} := \frac{1}{L}\sum_{t=1}^{L} \left|\frac{y_t - \hat{y}_t}{y_t}\right|\cdot 100 ~{\rm (%)} " />
+${\rm MAPE} := \frac{1}{L}\sum_{t=1}^{L} \left|\frac{y_t - \hat{y}_t}{y_t}\right|\cdot 100 ~{\rm (%)}$
 
 where L is the number of steps in the predicted sequence. 
 
