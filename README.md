@@ -79,7 +79,7 @@ It would be interesting to add uncertainty to the prediction, and see if values 
 
 Predict BG 3 hours in advance:
 
-  * Naive Baseline (last value in sequence):
+  * Naive Baseline (last value in historic sequence):
 
     MAE=39.0 mg/dl, std(MAE)=29.3 mg/dl; MAPE=28.5 %, std(MAPE)=23.4 %
     
@@ -97,7 +97,7 @@ Predict BG 3 hours in advance:
 
 Predict BG 1 hour in advance:
 
-  * Naive Baseline (last value in sequence):
+  * Naive Baseline (last value in historic sequence):
 
     MAE=22.5 mg/dl, std(MAE)=19.9 mg/dl; MAPE=16.4 %, std(MAPE)=15.8 %
 
@@ -119,18 +119,19 @@ There are a number of things that can be done:
 
 * Add some baselines, such as ARIMA, SVMs, random forest, etc.
 
+* Add uncertantity to the predictions 
+
 * Add dropout at the output of the encoder and decoder LSTM stacks.
 
 * Allow for the use of GRU, as well as LSTMs. This will speed up the computations.
 
 * Add skip connections to the encoder and decoder LSTM stacks.
 
-
-* Create a module of one-dimensional Convolutional Neural Networks (CNN) to extract features from the input, that are then feed to the encoder. I've played with that, but not systematically. 
+* Create a module of one-dimensional Convolutional Neural Networks (CNN) stack to extract features from the input, that are then feed to the encoder. I've played with that, but not systematically. 
 
 * It would also be interesting to use Dialeted CNN for the encoder, instead of LSTMs.
 
-* Add curriculum learning with some scheduling procedure for teacher-forcing.
+* Add curriculum learning with some scheduling procedure for teacher-forcing. Right now, a simple Bernoulli distribution is applied.
 
 In general, any idea that you might have will be very welcomed!
 
