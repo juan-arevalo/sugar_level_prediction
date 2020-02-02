@@ -6,7 +6,8 @@ The raw data is freely available upon email request to <diabetes.artificialintel
 
 I pose the problem of Blood Glucose (BG) estimation with X hours in advance as a Sequence-to-sequence (seq2seq) auto-regressive model with Recurrent Neural Networks, allowing for attention mechanisim and teacher-forcing. The code consists of two notebooks, prepared to be run in [Google Colab](https://colab.research.google.com/): 
 
-* The first one, `data_exploration_colab.ipynb`, takes the raw data (around 500k data points) and creates train, validation and test datasets, with X days of historic depth,and Y hours for prediction.
+* The first one, `data_exploration_colab.ipynb`, takes the raw data (around 500k data points) and creates train, validation and test datasets, with X days of historic depth, and Y hours for prediction. Sequences are created with a sampling period of 15 minutes, although raw data point are taken with a period of  either 5 or 15 minutes.
+
 * The second one, `seq2seq_prediction_attention_colab.ipynb`, implements an state-of-the-art seq2seq model with attention and teacher-forcing. 
 
 The code in both notebooks is ready to be implemented as a library, but I've rather preferred to leaeve everything in the notebook (for now), so as to ease its readability. This may change sooner than later =)
@@ -17,9 +18,9 @@ The notebooks are prepared to be run directly on Google Colab, without any furth
 
 In order to reproduce the results, follow these steps:
 
-1. First obtain the raw data sending an email to <diabetes.artificialintelligence@gmail.com>. Extact the contents of the zip file into your Google Drive; I recommend using the path: _**path_to_data=My Drive/Colab Notebooks/sugar_level_prediction/data/**_.
+1. First obtain the raw data sending an email to <diabetes.artificialintelligence@gmail.com>. Extact the contents of the zip file into your Google Drive (you can extract them locally and upload the csv files to Drive, or install a zip extractor in your Drive). I recommend using the path: _**path_to_data=My Drive/Colab Notebooks/sugar_level_prediction/data/**_.
 
-2. Upload the notebooks to your Google Drive, (for instance, to the path _**My Drive/Colab Notebooks/sugar_level_prediction/expore/**_, but this is not a requirement), and open them with Google Colab.  
+2. Upload the notebooks to your Google Drive, (for instance, to the path _**My Drive/Colab Notebooks/sugar_level_prediction/exlpore/**_, but this is not a requirement), and open them with Google Colab (install the App *colaboratory* in your Drive if you haven't done so yet).  
 
 3. Run the `data_exploration_colab.ipynb`. You can choose the number of days to use for the features (history), as well as the number of hours for the target (future prediction). Running this notebook will create a folder _**path_to_data/processed/**_, with `raw_data.csv` file containing the data after small preprocessing (around 500k data points). It will also add \*.npy files with the train, validation and test datsets (see section [Datasets](#datasets) for more details). Please note that this process can take more than an hour, dependign on the number of days you select for the history. Typically, 350k sequences will be created for training, 40k for validating and another 40k for testing. Make sure you have enough space in your Google Drive (for 6 days of history, the train dataset takes 4 GB).
 
@@ -27,7 +28,7 @@ In order to reproduce the results, follow these steps:
 
 ## Dataset
 
-The train, validation and test datasets consit of sequences of `history`+`future` points, with 5 features (i.e. tensors of shape=(num_sequences, `history`+`future`, 5)) : 
+Sequences are created with a sampling period of 15 minutes, although raw data point are taken with a period of either 5 or 15 minutes. The train, validation and test datasets consit of sequences of `history`+`future` points, with 5 features (i.e. tensors of shape=(num_sequences, `history`+`future`, 5)): 
 
 * time interval: days counted starting from the end of the `history` of the sequence. Thus, for points in the `history`, this feature takes negative values, while for points in the `future`, it's positive. 
 * hour: hour of the day
